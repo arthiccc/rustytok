@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}@{{ user.username }} - RustyTok{% endblock %}
+
+{% block content %}
+<section class="profile">
+    <div class="profile-header">
+        {% if !user.avatar_url.is_empty() %}
+        <img src="{{ user.proxied_avatar_url() }}" alt="{{ user.nickname }}" class="avatar">
+        {% else %}
+        <div class="avatar placeholder">{{ user.nickname.chars().next().unwrap_or('?') }}</div>
+        {% endif %}
+
+        <div class="profile-info">
+            <h1>{{ user.nickname }}</h1>
+            <p class="username">@{{ user.username }}</p>
+            <p class="bio">{{ user.bio }}</p>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <span class="number">{{ user.follower_count }}</span>
+            <span class="label">Followers</span>
+        </div>
+        <div class="stat">
+            <span class="number">{{ user.following_count }}</span>
+            <span class="label">Following</span>
+        </div>
+        <div class="stat">
+            <span class="number">{{ user.like_count }}</span>
+            <span class="label">Likes</span>
+        </div>
+        <div class="stat">
+            <span class="number">{{ user.video_count }}</span>
+            <span class="label">Videos</span>
+        </div>
+    </div>
+</section>
+
+{% if !user.videos.is_empty() %}
+<section class="videos">
+    <h2>Videos</h2>
+    <div class="video-grid">
+        {% for video in &user.videos %}
+        <a href="/video/{{ video.id }}" class="video-card">
+            {% if !video.thumbnail_url.is_empty() %}
+            <img src="{{ video.proxied_thumbnail_url() }}" alt="{{ video.description }}" loading="lazy">
+            {% endif %}
+            <div class="video-stats">
+                <span>▶ {{ video.view_count }}</span>
+                <span>❤ {{ video.like_count }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}

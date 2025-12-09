@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}{{ video.description|truncate(50) }} - RustyTok{% endblock %}
+
+{% block content %}
+<section class="video-page">
+    <div class="video-container">
+        {% if !video.video_url.is_empty() %}
+        <video controls autoplay loop playsinline poster="{{ video.proxied_thumbnail_url() }}">
+            <source src="{{ video.proxied_video_url() }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        {% else %}
+        <div class="video-placeholder">
+            <p>Video could not be loaded</p>
+            {% if !video.thumbnail_url.is_empty() %}
+            <img src="{{ video.proxied_thumbnail_url() }}" alt="Thumbnail">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="video-info">
+        <div class="author">
+            {% if !video.author_avatar.is_empty() %}
+            <img src="/proxy?url={{ video.author_avatar|urlencode }}" alt="{{ video.author_nickname }}"
+                class="avatar-small">
+            {% endif %}
+            <div>
+                <a href="/@{{ video.author_username }}" class="author-name">{{ video.author_nickname }}</a>
+                <span class="author-username">@{{ video.author_username }}</span>
+            </div>
+        </div>
+
+        <p class="description">{{ video.description }}</p>
+
+        <div class="video-stats">
+            <span>▶ {{ video.view_count }} views</span>
+            <span>❤ {{ video.like_count }} likes</span>
+            <span>💬 {{ video.comment_count }} comments</span>
+            <span>↗ {{ video.share_count }} shares</span>
+        </div>
+
+        {% if video.music_title.is_some() %}
+        <div class="music-info">
+            <span>🎵 {{ video.music_title.as_ref().unwrap() }}</span>
+            {% if video.music_author.is_some() %}
+            <span class="music-author">- {{ video.music_author.as_ref().unwrap() }}</span>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% if !video.video_url.is_empty() %}
+        <a href="{{ video.proxied_video_url() }}" download class="btn download-btn">⬇ Download Video</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

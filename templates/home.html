@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}RustyTok - Private TikTok Frontend{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>🦀 RustyTok</h1>
+    <p class="tagline">Privacy-friendly TikTok frontend</p>
+
+    <form action="/" method="get" class="search-box">
+        <input type="text" name="q" placeholder="Enter @username, #hashtag, video ID, or paste TikTok URL"
+            autocomplete="off" autofocus>
+        <button type="submit">Go</button>
+    </form>
+
+    <div class="features">
+        <div class="feature">
+            <span class="icon">🕵️</span>
+            <h3>Private</h3>
+            <p>All requests proxied through server</p>
+        </div>
+        <div class="feature">
+            <span class="icon">🔒</span>
+            <h3>Secure</h3>
+            <p>Strong CSP blocks TikTok tracking</p>
+        </div>
+        <div class="feature">
+            <span class="icon">⚡</span>
+            <h3>Fast</h3>
+            <p>Rust-powered, minimal overhead</p>
+        </div>
+    </div>
+</section>
+
+<section class="examples">
+    <h2>Examples</h2>
+    <ul>
+        <li><a href="/@tiktok">@tiktok</a> - View user profile</li>
+        <li><a href="/tag/rusttok">#rustytok</a> - View hashtag</li>
+        <li>Paste any TikTok URL to view it privately</li>
+    </ul>
+</section>
+{% endblock %}

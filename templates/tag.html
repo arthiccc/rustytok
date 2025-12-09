@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}#{{ tag.name }} - RustyTok{% endblock %}
+
+{% block content %}
+<section class="tag-page">
+    <div class="tag-header">
+        <h1>#{{ tag.name }}</h1>
+        {% if tag.view_count > 0 %}
+        <p class="view-count">{{ tag.view_count }} views</p>
+        {% endif %}
+    </div>
+</section>
+
+{% if !tag.videos.is_empty() %}
+<section class="videos">
+    <div class="video-grid">
+        {% for video in &tag.videos %}
+        <a href="/video/{{ video.id }}" class="video-card">
+            {% if !video.thumbnail_url.is_empty() %}
+            <img src="{{ video.proxied_thumbnail_url() }}" alt="{{ video.description }}" loading="lazy">
+            {% endif %}
+            <div class="video-stats">
+                <span>▶ {{ video.view_count }}</span>
+                <span>❤ {{ video.like_count }}</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% else %}
+<section class="empty-state">
+    <p>No videos found for this tag, or TikTok's page structure has changed.</p>
+</section>
+{% endif %}
+{% endblock %}
