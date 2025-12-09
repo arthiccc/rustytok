@@ -2,7 +2,7 @@
 
 A privacy-friendly TikTok frontend written in Rust. All requests are proxied server-side, so TikTok never sees your IP or tracks you.
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/YOUR_USERNAME/rustytok)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/arthiccc/rustytok)
 
 ## Features
 
@@ -84,7 +84,7 @@ cargo build --release
 
 ## CodeSandbox
 
-[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/YOUR_USERNAME/rustytok)
+[![Open in CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/github/arthiccc/rustytok)
 
 This project is configured to run on CodeSandbox. Just click the button above!
 
@@ -106,3 +106,4 @@ This project is licensed under the AGPL-3.0 License - see the [LICENSE](LICENSE)
 
 - Inspired by [ProxiTok](https://github.com/pablouser1/ProxiTok)
 - Part of the [LibRedirect](https://github.com/libredirect/libredirect) ecosystem
+
